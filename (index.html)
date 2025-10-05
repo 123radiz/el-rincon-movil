@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>El Rincón Móvil - Accesorios para Celular</title>
+    <!-- Carga de Tailwind CSS CDN para estilos modernos y responsivos -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Carga de Font Awesome para iconos (WhatsApp, Hamburguesa, Redes Sociales) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Configuración de la fuente Inter y el color de marca */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+        :root {
+            --color-primary: #ec4899; /* Tailwind fuchsia-500 */
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            scroll-behavior: smooth;
+        }
+        /* Estilos para el botón flotante de WhatsApp */
+        .whatsapp-float {
+            position: fixed;
+            width: 60px;
+            height: 60px;
+            bottom: 20px;
+            right: 20px;
+            background-color: #25d366; /* Color oficial de WhatsApp */
+            color: #fff;
+            border-radius: 50px;
+            text-align: center;
+            font-size: 30px;
+            box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.4);
+            z-index: 1000;
+            transition: transform 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+            background-color: #128c7e;
+        }
+        /* Garantiza que las imágenes se ajusten dentro de sus contenedores */
+        .product-image {
+            object-fit: cover;
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+
+    <!-- BOTÓN FLOTANTE DE WHATSAPP (ACCESO RÁPIDO) -->
+    <!-- Enlace directo al chat con el número 5615864343 (usando 521 como código de país de México) -->
+    <a href="https://wa.me/5215615864343?text=Hola,%20estoy%20interesado%20en%20los%20accesorios%20que%20vi%20en%20El%20Rincón%20Móvil." 
+       target="_blank" 
+       class="whatsapp-float" 
+       title="Chatea con El Rincón Móvil por WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- MENÚ DE NAVEGACIÓN (HEADER STICKY) -->
+    <header id="inicio" class="sticky top-0 z-50 bg-fuchsia-500 shadow-xl">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center py-4">
+                
+                <!-- Logo/Nombre de la Marca -->
+                <div class="flex justify-start">
+                    <a href="#inicio" class="text-3xl font-extrabold tracking-tight text-white rounded-lg p-1 transition duration-300 transform hover:scale-105">
+                        El Rincón Móvil
+                    </a>
+                </div>
+
+                <!-- Botones de Navegación (DESKTOP) -->
+                <nav class="hidden md:flex space-x-10">
+                    <a href="#inicio" class="text-white hover:text-fuchsia-100 px-3 py-2 text-lg font-medium rounded-lg transition duration-300">
+                        Inicio
+                    </a>
+                    <a href="#accesorios" class="text-white hover:text-fuchsia-100 px-3 py-2 text-lg font-medium rounded-lg transition duration-300">
+                        Accesorios
+                    </a>
+                    <a href="#galeria" class="text-white hover:text-fuchsia-100 px-3 py-2 text-lg font-medium rounded-lg transition duration-300">
+                        ¡Nuestras Fotos!
+                    </a>
+                    <!-- Botón de Contacto Desktop -->
+                    <a href="#contacto" class="bg-white text-fuchsia-500 hover:bg-fuchsia-100 px-4 py-2 text-lg font-bold rounded-lg shadow-md transition duration-300 transform hover:scale-105">
+                        <i class="fab fa-whatsapp mr-2"></i> Contacto
+                    </a>
+                </nav>
+
+                <!-- Botón de Menú Móvil (HAMBURGUESA) -->
+                <div class="-mr-2 flex items-center md:hidden">
+                    <button id="menu-button" type="button" onclick="toggleMenu()" class="inline-flex items-center justify-center p-2 rounded-md text-white hover:text-fuchsia-100 hover:bg-fuchsia-600 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white" aria-expanded="false">
+                        <!-- Icono de hamburguesa (Open) -->
+                        <i id="menu-icon-open" class="fa-solid fa-bars h-6 w-6"></i>
+                        <!-- Icono de cierre (Close) - Inicialmente oculto -->
+                        <i id="menu-icon-close" class="fa-solid fa-xmark h-6 w-6 hidden"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Menú Móvil Desplegable -->
+        <div id="mobile-menu" class="hidden md:hidden bg-fuchsia-600 shadow-lg">
+            <div class="pt-2 pb-3 space-y-1">
+                <!-- Enlaces de navegación móvil (al hacer clic, llama a closeMenu()) -->
+                <a href="#inicio" onclick="closeMenu()" class="block px-3 py-2 rounded-md text-base font-medium text-white hover:bg-fuchsia-700">Inicio</a>
+                <a href="#accesorios" onclick="closeMenu()" class="block px-3 py-2 rounded-md text-base font-medium text-white hover:bg-fuchsia-700">Accesorios</a>
+                <a href="#galeria" onclick="closeMenu()" class="block px-3 py-2 rounded-md text-base font-medium text-white hover:bg-fuchsia-700">¡Nuestras Fotos!</a>
+            </div>
+            <div class="pt-4 pb-3 border-t border-fuchsia-700">
+                <!-- Botón de Contacto en Menú Móvil -->
+                <div class="px-5">
+                    <a href="https://wa.me/5215615864343?text=Hola,%20me%20interesan%20los%20accesorios." target="_blank" class="w-full flex items-center justify-center px-4 py-3 border border-transparent text-base font-bold rounded-xl shadow-md text-fuchsia-800 bg-white hover:bg-fuchsia-100 transition duration-300">
+                        <i class="fab fa-whatsapp mr-2"></i> Chatea Ahora
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        
+        <!-- SECCIÓN 1: INICIO (HERO SECTION) -->
+        <section id="hero" class="bg-gray-900 pt-16 pb-24 sm:pt-24 sm:pb-32 overflow-hidden relative">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                <div class="text-center">
+                    <h1 class="text-6xl sm:text-7xl lg:text-8xl font-extrabold tracking-tight text-white mb-6">
+                        <span class="block">El <span class="text-fuchsia-400">Rincón Móvil</span></span>
+                        <span class="block text-4xl sm:text-5xl lg:text-6xl text-fuchsia-200">La Vibras que tu Móvil Necesita</span>
+                    </h1>
+                    <p class="mt-3 max-w-md mx-auto text-xl text-fuchsia-200 sm:text-2xl md:mt-5 md:max-w-3xl">
+                        Fundas, cargadores y gadgets que te hacen destacar. ¡Diseños exclusivos para ti!
+                    </p>
+                    <div class="mt-10 max-w-md mx-auto sm:flex sm:justify-center md:mt-12">
+                        <a href="#accesorios" class="w-full sm:w-auto inline-flex items-center justify-center px-8 py-4 border border-transparent text-xl font-medium rounded-xl shadow-2xl text-fuchsia-900 bg-fuchsia-200 hover:bg-white transition duration-300 transform hover:scale-105 hover:shadow-fuchsia-400/50">
+                            ¡Ver Colección Ahora!
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <!-- Fondo de patrón abstracto para el impacto visual -->
+            <div class="absolute inset-0 opacity-10">
+                <svg class="h-full w-full" fill="none" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+                    <defs>
+                        <pattern id="pattern-fuchsia" x="0" y="0" width="10" height="10" patternUnits="userSpaceOnUse">
+                            <rect x="0" y="0" width="4" height="4" class="text-fuchsia-500" fill="currentColor"></rect>
+                        </pattern>
+                    </defs>
+                    <rect width="100%" height="100%" fill="url(#pattern-fuchsia)"></rect>
+                </svg>
+            </div>
+        </section>
+
+        <!-- SECCIÓN 2: ACCESORIOS (PRODUCTOS) -->
+        <section id="accesorios" class="py-20 sm:py-32 bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center">
+                    <h2 class="text-4xl font-extrabold tracking-tight text-gray-900 sm:text-5xl">
+                        Nuestros <span class="text-fuchsia-500">Productos Destacados</span>
+                    </h2>
+                    <p class="mt-4 text-xl text-gray-500">
+                        La mejor calidad en fundas, cargadores y protectores para tu dispositivo.
+                    </p>
+                </div>
+
+                <!-- Cuadrícula de Productos (IMÁGENES REALES DEL USUARIO) -->
+                <div class="mt-12 grid grid-cols-1 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 lg:gap-x-8 lg:gap-y-12">
+                    
+                    <!-- Producto 1: (Funda Neón) -->
+                    <div class="group relative bg-white p-6 rounded-xl shadow-lg hover:shadow-fuchsia-300 transition duration-300">
+                        <div class="w-full min-h-80 bg-gray-200 aspect-square overflow-hidden rounded-xl lg:h-80 lg:aspect-none">
+                            <img src="https://i.postimg.cc/Q9kSpqhP/1-1.jpg" 
+                                 onerror="this.onerror=null;this.src='https://placehold.co/300x400/ec4899/ffffff?text=Funda+1+Fallback';" 
+                                 alt="Funda protectora premium de color vibrante." 
+                                 class="product-image group-hover:opacity-75 transition duration-300">
+                        </div>
+                        <div class="mt-4 flex justify-between items-center">
+                            <div>
+                                <h3 class="text-lg font-semibold text-gray-900">
+                                    <a href="#contacto" class="hover:text-fuchsia-500">
+                                        Funda Ultra Shock - Neón
+                                    </a>
+                                </h3>
+                                <p class="mt-1 text-sm text-gray-500">Protección Extrema</p>
+                            </div>
+                            <p class="text-lg font-bold text-fuchsia-600">$299 MXN</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Producto 2: (Funda Transparente) -->
+                    <div class="group relative bg-white p-6 rounded-xl shadow-lg hover:shadow-fuchsia-300 transition duration-300">
+                        <div class="w-full min-h-80 bg-gray-200 aspect-square overflow-hidden rounded-xl lg:h-80 lg:aspect-none">
+                            <img src="https://i.postimg.cc/tZH2ZcQc/36402427-1.jpg" 
+                                 onerror="this.onerror=null;this.src='https://placehold.co/300x400/1e293b/ffffff?text=Funda+2+Fallback';" 
+                                 alt="Funda de diseño transparente con bordes de color." 
+                                 class="product-image group-hover:opacity-75 transition duration-300">
+                        </div>
+                        <div class="mt-4 flex justify-between items-center">
+                            <div>
+                                <h3 class="text-lg font-semibold text-gray-900">
+                                    <a href="#contacto" class="hover:text-fuchsia-500">
+                                        Funda Transparente Reforzada
+                                    </a>
+                                </h3>
+                                <p class="mt-1 text-sm text-gray-500">Máxima Claridad</p>
+                            </div>
+                            <p class="text-lg font-bold text-fuchsia-600">$350 MXN</p>
+                        </div>
+                    </div>
+
+                    <!-- Producto 3: (Cargador Rápido) -->
+                    <div class="group relative bg-white p-6 rounded-xl shadow-lg hover:shadow-fuchsia-300 transition duration-300">
+                        <div class="w-full min-h-80 bg-gray-200 aspect-square overflow-hidden rounded-xl lg:h-80 lg:aspect-none">
+                            <img src="https://i.postimg.cc/2bf2btR2/D-NQ-NP-637093-MLA79456696872-102024-O.webp" 
+                                 onerror="this.onerror=null;this.src='https://placehold.co/300x400/6b7280/ffffff?text=Cargador+Fallback';" 
+                                 alt="Cargador de pared con cable de alta velocidad." 
+                                 class="product-image group-hover:opacity-75 transition duration-300">
+                        </div>
+                        <div class="mt-4 flex justify-between items-center">
+                            <div>
+                                <h3 class="text-lg font-semibold text-gray-900">
+                                    <a href="#contacto" class="hover:text-fuchsia-500">
+                                        Kit Carga Rápida 45W
+                                    </a>
+                                </h3>
+                                <p class="mt-1 text-sm text-gray-500">Potencia USB-C</p>
+                            </div>
+                            <p class="text-lg font-bold text-fuchsia-600">$450 MXN</p>
+                        </div>
+                    </div>
+
+                    <!-- Producto 4: (Audífonos Inalámbricos) -->
+                    <div class="group relative bg-white p-6 rounded-xl shadow-lg hover:shadow-fuchsia-300 transition duration-300">
+                        <div class="w-full min-h-80 bg-gray-200 aspect-square overflow-hidden rounded-xl lg:h-80 lg:aspect-none">
+                            <img src="https://i.postimg.cc/sBWT2r8G/GAR117-3.jpg" 
+                                 onerror="this.onerror=null;this.src='https://placehold.co/300x400/fb923c/ffffff?text=Audifonos+Fallback';" 
+                                 alt="Audífonos inalámbricos de color negro." 
+                                 class="product-image group-hover:opacity-75 transition duration-300">
+                        </div>
+                        <div class="mt-4 flex justify-between items-center">
+                            <div>
+                                <h3 class="text-lg font-semibold text-gray-900">
+                                    <a href="#contacto" class="hover:text-fuchsia-500">
+                                        Audífonos Inalámbricos Bluetooth
+                                    </a>
+                                </h3>
+                                <p class="mt-1 text-sm text-gray-500">Sonido de Alta Fidelidad</p>
+                            </div>
+                            <p class="text-lg font-bold text-fuchsia-600">$780 MXN</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- SECCIÓN 3: GALERÍA (IMÁGENES PROPIAS) -->
+        <section id="galeria" class="py-20 sm:py-32 bg-gray-100">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center">
+                    <h2 class="text-4xl font-extrabold tracking-tight text-gray-900 sm:text-5xl">
+                        <span class="text-fuchsia-500">¡Nuestras Fotos!</span> Productos Reales
+                    </h2>
+                    <p class="mt-4 text-xl text-gray-500">
+                        Mira cómo lucen nuestros accesorios. Esta es tu galería de imágenes propias.
+                    </p>
+                </div>
+
+                <!-- Galería de Imágenes (IMÁGENES REALES DEL USUARIO) -->
+                <div class="mt-12 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6 lg:gap-8">
+                    
+                    <!-- Imagen Galería 1 -->
+                    <div class="overflow-hidden rounded-xl shadow-lg transform hover:scale-[1.02] transition duration-300 hover:ring-4 hover:ring-fuchsia-500/50">
+                        <img src="https://i.postimg.cc/NKSNYMdS/images-2.jpg" 
+                             onerror="this.onerror=null;this.src='https://placehold.co/600x600/fecaca/9d174d?text=Foto+Galeria+Fallback';" 
+                             alt="Foto de producto en exhibición 1" 
+                             class="product-image aspect-square">
+                    </div>
+                    
+                    <!-- Imagen Galería 2 -->
+                    <div class="overflow-hidden rounded-xl shadow-lg transform hover:scale-[1.02] transition duration-300 hover:ring-4 hover:ring-fuchsia-500/50">
+                        <img src="https://i.postimg.cc/jwrZw1YV/IMG-20250521-161538.jpg" 
+                             onerror="this.onerror=null;this.src='https://placehold.co/600x600/fbcfe8/be185d?text=Foto+Galeria+Fallback';" 
+                             alt="Foto de producto en exhibición 2" 
+                             class="product-image aspect-square">
+                    </div>
+
+                    <!-- Imagen Galería 3 (Oculta en móvil) -->
+                    <div class="overflow-hidden rounded-xl shadow-lg transform hover:scale-[1.02] transition duration-300 hover:ring-4 hover:ring-fuchsia-500/50">
+                        <img src="https://i.postimg.cc/cvrDVYBX/IMG-20250719-172602.jpg" 
+                             onerror="this.onerror=null;this.src='https://placehold.co/600x600/f0abfc/701a75?text=Foto+Galeria+Fallback';" 
+                             alt="Foto de producto en exhibición 3" 
+                             class="product-image aspect-square hidden sm:block">
+                    </div>
+
+                    <!-- Imagen Galería 4 (Oculta en tablet y móvil) -->
+                    <div class="overflow-hidden rounded-xl shadow-lg transform hover:scale-[1.02] transition duration-300 hover:ring-4 hover:ring-fuchsia-500/50">
+                        <img src="https://i.postimg.cc/879yD5yD/SAVE-20250718-102913.jpg" 
+                             onerror="this.onerror=null;this.src='https://placehold.co/600x600/e9d5ff/86198f?text=Foto+Galeria+Fallback';" 
+                             alt="Foto de producto en exhibición 4" 
+                             class="product-image aspect-square hidden lg:block">
+                    </div>
+                </div>
+                
+                <div class="mt-16 text-center">
+                    <button onclick="window.location.href='#contacto'" class="inline-flex items-center justify-center px-8 py-4 border border-transparent text-xl font-medium rounded-xl shadow-lg text-white bg-fuchsia-500 hover:bg-fuchsia-600 transition duration-300 transform hover:scale-105">
+                        <i class="fas fa-camera mr-3"></i> ¡Pide el tuyo ahora!
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECCIÓN 4: CONTACTO (FOOTER) -->
+        <footer id="contacto" class="bg-gray-900 py-16 sm:py-20">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-white">
+                <div class="text-center">
+                    <h2 class="text-4xl font-extrabold tracking-tight text-fuchsia-400 sm:text-5xl">
+                        ¿Tienes Preguntas? ¡Contáctanos!
+                    </h2>
+                    <p class="mt-4 text-xl text-gray-300 max-w-2xl mx-auto">
+                        Estamos listos para ayudarte a encontrar el accesorio perfecto para tu celular.
+                    </p>
+                </div>
+                
+                <div class="mt-10 flex flex-col items-center space-y-6">
+ 
